@@ -7,10 +7,10 @@ from pyrogram import filters
 from pyrogram.enums import ChatAction, PollType, ParseMode
 
 from Oneforall import app
-from Oneforall.mongo import db
+from Oneforall.utils.database.database import db
 
 # ⚙️ CONFIG
-CHATS_COLL = db.chats
+Chatsdb = mongodb.chats
 STATS_COLL = db.quiz_stats
 LOGGER_ID = -1003634796457  # ← PUT YOUR LOG CHANNEL/GROUP ID HERE
 
