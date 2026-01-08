@@ -10,8 +10,8 @@ STATS_COLL = db.quiz_stats
 CHATS_COLL = db.chats
 
 # 🎥 VIDEO + IMAGE (Catbox URLs)
-LEADERBOARD_VIDEO = "https://catbox.moe/leaderboard.mp4"  # YOUR VIDEO
-TROPHY_IMAGE = "https://i.imgur.com/trophyy.png"  # fallback image
+LEADERBOARD_VIDEO = "https://files.catbox.moe/dtcr9p.mp4"  # YOUR VIDEO
+TROPHY_IMAGE = "https://files.catbox.moe/qplosp.jpg"  # fallback image
 
 
 @app.on_poll_voted()
