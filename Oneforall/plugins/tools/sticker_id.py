@@ -1,5 +1,5 @@
 from pyrogram import filters
-from Tune import app
+from Oneforall import app
 
 @app.on_message(filters.sticker)
 async def sticker_id(_, message):
