@@ -30,32 +30,24 @@ async def start_pm(client, message: Message, _):
     await add_served_user(message.from_user.id)
     await message.react("❤")
     await asyncio.sleep(0.5)
-        
+
+    
+    
+    typing_message = await message.reply("<b>𝖣ɪɴɢ..𝖣ᴏɴɢ..❤️‍🔥</b>")
+    
+    
+    typing_text = "<b>𝖲ᴛᴀʀᴛɪɴɢ...❤️‍🔥🛠️</b>"
+    
+    for i in range(1, len(typing_text) + 1):  
+        try:
+            await typing_message.edit_text(typing_text[:i])
+            await asyncio.sleep(0.001)  
+        except Exception as e:
+            print(f"Error while editing message : {e}")  
+
+    await asyncio.sleep(2)  
+    await typing_message.delete()
      
-        await accha.edit("**__ꨄ︎ ѕ__**")
-        await asyncio.sleep(0.01)
-        await accha.edit("**__ꨄ sт__**")
-        await asyncio.sleep(0.01)
-        await accha.edit("**__ꨄ︎ ѕтα__**")
-        await asyncio.sleep(0.01)
-        await accha.edit("**__ꨄ︎ ѕтαя__**")
-        await asyncio.sleep(0.01)
-        await accha.edit("**__ꨄ sтαят__**")
-        await asyncio.sleep(0.01)
-        await accha.edit("**__ꨄ︎ sтαятι__**")
-        await asyncio.sleep(0.01)
-        await accha.edit("**__ꨄ︎ sтαятιи__**")
-        await asyncio.sleep(0.01)
-        await accha.edit("**__ꨄ sтαятιиg__**")
-        await asyncio.sleep(0.01)
-        await accha.edit("**__ꨄ︎ ѕтαятιиg.__**")
-        await asyncio.sleep(0.1)
-        await accha.edit("**__ꨄ sтαятιиg.....__**")
-        await asyncio.sleep(0.1)
-        await accha.edit("**__ꨄ︎ ѕтαятιиg.__**")
-        await asyncio.sleep(0.1)
-        await accha.edit("**__ꨄ sтαятιиg.....__**")
-        await accha.delete()
         
     if len(message.text.split()) > 1:
         name = message.text.split(None, 1)[1]
