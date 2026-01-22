@@ -359,8 +359,24 @@ class Call(PyTgCalls):
                 await set_loop(chat_id, loop)
             await auto_clean(popped)
             if not check:
-                await _clear_(chat_id)
-                return await client.leave_group_call(chat_id)
+    language = await get_lang(chat_id)
+    _ = get_string(language)
+
+    buttons = InlineKeyboardMarkup(
+        [
+                {"text": "➕ Add Me", "url": f"https://t.me/{app.username}?startgroup=true"}
+        ]
+    )
+
+    await app.send_message(
+        chat_id,
+        "🎵 𝐓ʜᴇ 𝐐ᴜᴇᴜᴇ 𝐇ᴀs 𝐅ɪɴɪsʜᴇᴅ.\n"
+        "𝐔sᴇ /play 𝐓ᴏ 𝐀ᴅᴅ 𝐌ᴏʀᴇ 𝐒ᴏɴɢs!!",
+        reply_markup=buttons,
+    )
+
+    await _clear_(chat_id)
+    return await client.leave_group_call(chat_id)
         except:
             try:
                 await _clear_(chat_id)
