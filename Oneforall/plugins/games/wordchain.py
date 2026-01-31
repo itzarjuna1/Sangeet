@@ -4,7 +4,7 @@ import asyncio
 import random
 import os
 
-FILE_PATH = os.path.join(os.path.dirname(__file__), "..", "words.txt")
+FILE_PATH = os.path.join(os.path.dirname(__file__), "words.txt")
 with open(FILE_PATH, "r") as f:
     WORDS = set(w.strip().lower() for w in f.readlines())
 
