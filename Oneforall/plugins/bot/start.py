@@ -42,10 +42,10 @@ async def start_pm(client, message: Message, _):
             await message.reply_sticker(
                 "CAACAgUAAxkBAAEQPYppZ5NUzyEuz9krlTBI7WJxE4l9HgACxggAAtL9OVfNmn5c5Qtt7DgE"
             )
-            return await message.reply_photo(
-                photo=config.START_IMG_URL,
-                caption=_["help_1"].format(config.SUPPORT_CHAT),
-                reply_markup=help_pannel(_),
+            return await message.reply_video(
+    video=config.START_VIDEO_URL,
+    caption=_["help_1"].format(config.SUPPORT_CHAT),
+    reply_markup=help_pannel(_),
             )
 
         # SUDO LIST
