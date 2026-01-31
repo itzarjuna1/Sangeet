@@ -1,4 +1,4 @@
-from Oneforall import HOTTY as app
+from Oneforall import Hotty as app
 from pyrogram import filters
 import asyncio
 import random
