@@ -349,56 +349,81 @@ class Call(PyTgCalls):
 
 
     async def change_stream(self, client: PyTgCalls, chat_id: int):
-        await delete_old_message(chat_id)
-        check = db.get(chat_id)
-        popped = None
-        loop = await get_loop(chat_id)
-        try:
-            if loop == 0:
-                popped = check.pop(0)
-            else:
-                loop = loop - 1
-                await set_loop(chat_id, loop)
-            await auto_clean(popped)
-            if not check:
-                await _clear_(chat_id)
-                try:
-                    buttons = InlineKeyboardMarkup(
-                        [
-                            [
-                                InlineKeyboardButton(
-                                    "✙ ʌᴅᴅ ϻє вᴧʙʏ ✙",
-                                    url=f"https://t.me/{app.username}?startgroup=true",
-                                ),
-                                InlineKeyboardButton(
-                                    "⋞ ᴄʟᴏsє ⋟", callback_data="close_message"
-                                ),
-                            ]
-                        ]
-                    )
-                    await app.send_message(
-                        chat_id,
-                        "🎵 𝐓ʜᴇ 𝐐ᴜᴇᴜᴇ 𝐇ᴀs 𝐅ɪɴɪsʜᴇᴅ. 𝐔sᴇ /play 𝐓ᴏ 𝐀ᴅᴅ 𝐌ᴏʀᴇ 𝐒ᴏɴɢs!!",
-                        reply_markup=buttons,
-                    )
-                except:
-                    pass
-                return await client.leave_call(chat_id, close=False)
-        except Exception:
+    await delete_old_message(chat_id)
+
+    check = db.get(chat_id)
+    popped = None
+    loop = await get_loop(chat_id)
+
+    try:
+        if loop == 0:
+            popped = check.pop(0)
+        else:
+            loop -= 1
+            await set_loop(chat_id, loop)
+
+        await auto_clean(popped)
+
+        if not check:
+            await _clear_(chat_id)
+
+            buttons = InlineKeyboardMarkup(
+                [
+                    [
+                        InlineKeyboardButton(
+                            "✙ ʌᴅᴅ ϻє вᴧʙʏ ✙",
+                            url=f"https://t.me/{app.username}?startgroup=true",
+                        ),
+                        InlineKeyboardButton(
+                            "⋞ ᴄʟᴏsє ⋟", callback_data="close_message"
+                        ),
+                    ]
+                ]
+            )
+
             try:
-                await _clear_(chat_id)
-                try:
-    await app.send_message(
-        chat_id,
-        "🎵 𝐓ʜᴇ 𝐐ᴜᴇᴜᴇ 𝐇ᴀs 𝐅ɪɴɪsʜᴇᴅ. 𝐔sᴇ /play 𝐓ᴏ 𝐀ᴅᴅ 𝐌ᴏʀᴇ 𝐒ᴏɴɢs!!",
-        reply_markup=buttons,
-    )
-    return await client.leave_call(chat_id, close=False)
+                await app.send_message(
+                    chat_id,
+                    "🎵 𝐓ʜᴇ 𝐐ᴜᴇᴜᴇ 𝐇ᴀs 𝐅ɪɴɪsʜᴇᴅ. 𝐔sᴇ /play 𝐓ᴏ 𝐀ᴅᴅ 𝐌ᴏʀᴇ 𝐒ᴏɴɢs!!",
+                    reply_markup=buttons,
+                )
+            except Exception:
+                pass
 
-except Exception as e:
-    pass
+            await client.leave_call(chat_id, close=False)
+            return
 
-else:
+    except Exception:
+        try:
+            await _clear_(chat_id)
+
+            buttons = InlineKeyboardMarkup(
+                [
+                    [
+                        InlineKeyboardButton(
+                            "✙ ʌᴅᴅ ϻє вᴧʙʏ ✙",
+                            url=f"https://t.me/{app.username}?startgroup=true",
+                        ),
+                        InlineKeyboardButton(
+                            "⋞ ᴄʟᴏsє ⋟", callback_data="close_message"
+                        ),
+                    ]
+                ]
+            )
+
+            try:
+                await app.send_message(
+                    chat_id,
+                    "🎵 𝐓ʜᴇ 𝐐ᴜᴇᴜᴇ 𝐇ᴀs 𝐅ɪɴɪsʜᴇᴅ. 𝐔sᴇ /play 𝐓ᴏ 𝐀ᴅᴅ 𝐌ᴏʀᴇ 𝐒ᴏɴɢs!!",
+                    reply_markup=buttons,
+                )
+            except Exception:
+                pass
+
+            await client.leave_call(chat_id, close=False)
+
+        except Exception:
+            return
             queued = check[0]["file"]
             language = await get_lang(chat_id)
             _ = get_string(language)
