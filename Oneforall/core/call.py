@@ -388,30 +388,17 @@ class Call(PyTgCalls):
             try:
                 await _clear_(chat_id)
                 try:
-                    buttons = InlineKeyboardMarkup(
-                        [
-                            [
-                                InlineKeyboardButton(
-                                    "✙ ʌᴅᴅ ϻє вᴧʙʏ ✙",
-                                    url=f"https://t.me/{app.username}?startgroup=true",
-                                ),
-                                InlineKeyboardButton(
-                                    "⋞ ᴄʟᴏsє ⋟", callback_data="close_message"
-                                ),
-                            ]
-                        ]
-                    )
-                    await app.send_message(
-                        chat_id,
-                        "🎵 𝐓ʜᴇ 𝐐ᴜᴇᴜᴇ 𝐇ᴀs 𝐅ɪɴɪsʜᴇᴅ. 𝐔sᴇ /play 𝐓ᴏ 𝐀ᴅᴅ 𝐌ᴏʀᴇ 𝐒ᴏɴɢs!!",
-                        reply_markup=buttons,
-                    )
-                return await client.leave_call(chat_id, close=False)
+    await app.send_message(
+        chat_id,
+        "🎵 𝐓ʜᴇ 𝐐ᴜᴇᴜᴇ 𝐇ᴀs 𝐅ɪɴɪsʜᴇᴅ. 𝐔sᴇ /play 𝐓ᴏ 𝐀ᴅᴅ 𝐌ᴏʀᴇ 𝐒ᴏɴɢs!!",
+        reply_markup=buttons,
+    )
+    return await client.leave_call(chat_id, close=False)
 
-              except Exception as e:
-               pass
+except Exception as e:
+    pass
 
-             else:
+else:
             queued = check[0]["file"]
             language = await get_lang(chat_id)
             _ = get_string(language)
